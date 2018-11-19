@@ -14,10 +14,8 @@ cache:
 after_success:
  - pip install --user awscli
  - eval $(aws ecr get-login --no-include-email --region us-east-1)
- - docker build -t bpm-eureka:$TRAVIS_BUILD_ID . --build-arg JAR_FILE=build/libs/eureka-0.0.1-SNAPSHOT.jar
- - docker tag bpm-eureka:$TRAVIS_BUILD_ID 524819651720.dkr.ecr.us-east-1.amazonaws.com/bpm-eureka:$TRAVIS_BUILD_ID
- - docker push 524819651720.dkr.ecr.us-east-1.amazonaws.com/bpm-eureka:$TRAVIS_BUILD_ID
  - docker build -t bpm-eureka . --build-arg JAR_FILE=build/libs/eureka-0.0.1-SNAPSHOT.jar
+ - docker tag bpm-eureka:latest 524819651720.dkr.ecr.us-east-1.amazonaws.com/bpm-eureka:$TRAVIS_BUILD_ID
+ - docker push 524819651720.dkr.ecr.us-east-1.amazonaws.com/bpm-eureka:$TRAVIS_BUILD_ID
  - docker tag bpm-eureka:latest 524819651720.dkr.ecr.us-east-1.amazonaws.com/bpm-eureka:latest
  - docker push 524819651720.dkr.ecr.us-east-1.amazonaws.com/bpm-eureka:latest
- 
